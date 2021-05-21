@@ -2,6 +2,7 @@ import Foundation
 
 enum FixedSizeListError: Error {
     case invalidIndex
+    case invalidSize
 }
 
 /**
@@ -9,24 +10,30 @@ enum FixedSizeListError: Error {
  */
 class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
     let size: Int
-    private var _list = [T]()
+    private var _list: [T]
     var list: [T] {
         let copy = _list
         return copy
     }
 
-    init(size: Int) {
-        self.size = size
-    }
-
-    func append(_ element: T) {
-        if _list.count >= size {
-            _ = _list.dropLast()
+    init(size: Int) throws {
+        if size <= 0 {
+            throw FixedSizeListError.invalidSize
         }
 
-        removeElement(element: element)
-        _list.append(element)
+        self.size = size
+        self._list = [T]()
 
+    }
+
+    func prepend(_ element: T) {
+        // Remove any occurrences of the element to maintain uniqueness
+        removeElement(element: element)
+        _list.insert(element, at: 0)
+
+        if _list.count > size {
+            _ = _list.removeLast()
+        }
     }
 
     func removeElement(at index: Int) throws {
