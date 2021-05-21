@@ -21,7 +21,7 @@ list.prepend(2)
 ```
 
 ## Example usage
-### Create a list with a fixed save of 3 and a type of Int
+### Create a list with a fixed sive of 3 and a type of Int
 ```Swift
 let list = try FixedSizeUniqueList<Int>(size: size)
 ```
