@@ -8,7 +8,7 @@ enum FixedSizeListError: Error {
 /**
  This is a class that exposes an array  with a fixed size that
  */
-class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
+public class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
     let size: Int
     private var _list: [T]
     var list: [T] {
