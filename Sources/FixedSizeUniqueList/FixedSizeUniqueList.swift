@@ -16,7 +16,7 @@ class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
         return copy
     }
 
-    init(size: Int) throws {
+    public init(size: Int) throws {
         if size <= 0 {
             throw FixedSizeListError.invalidSize
         }
@@ -26,7 +26,7 @@ class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
 
     }
 
-    func prepend(_ element: T) {
+    public func prepend(_ element: T) {
         // Remove any occurrences of the element to maintain uniqueness
         removeElement(element: element)
         _list.insert(element, at: 0)
@@ -36,7 +36,7 @@ class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
         }
     }
 
-    func removeElement(at index: Int) throws {
+    public func removeElement(at index: Int) throws {
         if index >= _list.count {
             throw FixedSizeListError.invalidIndex
         } else {
@@ -44,7 +44,7 @@ class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
         }
     }
 
-    func removeElement(element: T) {
+    public func removeElement(element: T) {
         _list.removeAll { listElement in
             element == listElement
         }
