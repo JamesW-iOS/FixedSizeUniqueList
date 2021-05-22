@@ -11,7 +11,7 @@ enum FixedSizeListError: Error {
 public class FixedSizeUniqueList<T: Codable & Equatable>: Codable {
     let size: Int
     private var _list: [T]
-    var list: [T] {
+    public var list: [T] {
         let copy = _list
         return copy
     }
